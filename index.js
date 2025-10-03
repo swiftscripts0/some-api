@@ -22,4 +22,16 @@ app.get("/user/:username/experiences", async (req, res) => {
     }
 });
 
+// Ping endpoint for UptimeRobot
+app.get("/ping", (req, res) => {
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  res.json({
+    success: true,
+    status: "ok",
+    timestamp: new Date().toISOString()
+  });
+});
+
+
+
 app.listen(PORT, () => console.log(`API running on port ${PORT}`));

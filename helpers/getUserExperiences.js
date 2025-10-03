@@ -29,6 +29,8 @@ export default async function getUserExperiences(username) {
     const thumbnail =
       $(el).find("img.game-card-thumb").attr("src") ||
       $(el).find("img.game-card-thumb").attr("data-src");
+    const playersRaw = $(el).find(".playing-counts-label").attr("title") || "0";
+    const players = parseInt(playersRaw.replace(/[^0-9]/g, ""), 10) || 0;
 
     // Extract gameId from URL
     let gameId = null;
@@ -38,6 +40,7 @@ export default async function getUserExperiences(username) {
     games.push({
       id: gameId,
       title,
+      players,
       thumbnail,
     });
   });
